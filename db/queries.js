@@ -79,4 +79,16 @@ async function deleteAllGroceriesUnderCategory(categ_id) {
 
 module.exports = {
   getAllCategories,
+  getSpecificCategory,
+  createCategory,
+  updateSpecificCategory,
+  deleteSpecificCategory,
+  deleteAllCategories,
+  getAllGroceries,
+  getAllGroceriesUnderCategory,
+  getSpecificGrocery,
+  createGrocery,
+  updateGrocery,
+  deleteSpecificGrocery,
+  deleteAllGroceriesUnderCategory,
 };
