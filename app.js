@@ -5,6 +5,7 @@ const indexRouter = require("./routes/indexRouter");
 const app = express();
 
 app.use("/", indexRouter);
+
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).send(err);
