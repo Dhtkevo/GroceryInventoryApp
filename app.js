@@ -3,10 +3,12 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const indexRouter = require("./routes/indexRouter");
+const groceriesRouter = require("./routes/groceriesRouter");
 const categoriesRouter = require("./routes/categoriesRouter");
 
 app.set("view engine", "ejs");
 
+app.use("/groceries", groceriesRouter);
 app.use("/categories", categoriesRouter);
 app.use("/", indexRouter);
 

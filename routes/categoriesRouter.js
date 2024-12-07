@@ -3,6 +3,11 @@ const categoriesController = require("../controllers/categoriesController");
 
 const categoriesRouter = Router();
 
+categoriesRouter.get(
+  "/:categoryId/items",
+  categoriesController.getGroceriesByCategory
+);
+
 categoriesRouter.get("/", categoriesController.getCategoryPage);
 
 module.exports = categoriesRouter;

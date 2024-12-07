@@ -9,7 +9,7 @@
     <h1>Food Categories</h1>
     <ul>
       <% for (let category of categories) { %>
-      <li><a href="/"><%= category.name %></a></li>
+      <li><a href="/categories/<%= category.id %>/items"><%= category.name %></a></li>
       <% } %>
     </ul>
     <button><a href="/"">Home</a></button>

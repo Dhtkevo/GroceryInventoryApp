@@ -1,7 +1,1 @@
-# Set up basic express project structure \*\*
-
-# Set up PostgreSQL database \*\*
-
-# Set up controllers
-
-# Set up routers
+# Implement ejs file for all items under a specific category
