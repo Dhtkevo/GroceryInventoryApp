@@ -1,1 +1,1 @@
-# Implement ejs file for all items under a specific category
+# Implement create category form functionality

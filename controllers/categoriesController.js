@@ -12,8 +12,14 @@ exports.getGroceriesByCategory = asyncHandler(async (req, res) => {
   const category = await db.getSpecificCategory(Number(categoryId));
   const groceries = await db.getAllGroceriesUnderCategory(Number(categoryId));
 
-  //console.log({ category, groceries }.category[0]);
-  console.log({ category, groceries });
-
   res.render("allGroceriesCategory", { category, groceries });
+});
+
+exports.getCreateCategoryForm = (req, res) => {
+  res.render("createCategory");
+};
+
+exports.postNewCategory = asyncHandler(async (req, res) => {
+  await db.createCategory(req.body.categoryName);
+  res.redirect("/categories");
 });
