@@ -34,7 +34,20 @@ exports.postUpdateCategory = asyncHandler(async (req, res) => {
   const { categoryName } = req.body;
   const { categoryId } = req.body;
 
-  console.log(console.log(req.body));
   await db.updateSpecificCategory(categoryName, Number(categoryId));
   res.redirect("/categories/" + categoryId + "/items");
+});
+
+exports.getDeleteCategory = asyncHandler(async (req, res) => {
+  const { categoryId } = req.params;
+  const category = await db.getSpecificCategory(Number(categoryId));
+
+  res.render("deleteCategory", { category });
+});
+
+exports.postDeleteCategory = asyncHandler(async (req, res) => {
+  const { categoryId } = req.body;
+
+  await db.deleteSpecificCategory(Number(categoryId));
+  res.redirect("/categories");
 });

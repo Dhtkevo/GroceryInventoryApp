@@ -24,4 +24,14 @@ categoriesRouter.post(
   categoriesController.postUpdateCategory
 );
 
+categoriesRouter.get(
+  "/:categoryId/delete",
+  categoriesController.getDeleteCategory
+);
+
+categoriesRouter.post(
+  "/:categoryId/delete",
+  categoriesController.postDeleteCategory
+);
+
 module.exports = categoriesRouter;
