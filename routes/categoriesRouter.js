@@ -14,4 +14,14 @@ categoriesRouter.get("/", categoriesController.getCategoryPage);
 
 categoriesRouter.post("/new", categoriesController.postNewCategory);
 
+categoriesRouter.get(
+  "/:categoryId/update",
+  categoriesController.getUpdateCategory
+);
+
+categoriesRouter.post(
+  "/:categoryId/update",
+  categoriesController.postUpdateCategory
+);
+
 module.exports = categoriesRouter;

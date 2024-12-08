@@ -23,3 +23,18 @@ exports.postNewCategory = asyncHandler(async (req, res) => {
   await db.createCategory(req.body.categoryName);
   res.redirect("/categories");
 });
+
+exports.getUpdateCategory = asyncHandler(async (req, res) => {
+  const categId = req.params.categoryId;
+  const category = await db.getSpecificCategory(Number(categId));
+  res.render("updateCategory", { category });
+});
+
+exports.postUpdateCategory = asyncHandler(async (req, res) => {
+  const { categoryName } = req.body;
+  const { categoryId } = req.body;
+
+  console.log(console.log(req.body));
+  await db.updateSpecificCategory(categoryName, Number(categoryId));
+  res.redirect("/categories/" + categoryId + "/items");
+});

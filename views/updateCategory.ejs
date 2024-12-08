@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update <%= category[0].name %> Category</title>
+  </head>
+  <body>
+    <h1>Update Category</h1>
+    <form action="/categories/<%= category[0].id %>/update" METHOD="POST">
+      <input
+        type="text"
+        name="categoryId"
+        value="<%= category[0].id %>"
+        readonly
+      />
+      <label for="categoryName">Category Name: </label>
+      <input
+        type="text"
+        name="categoryName"
+        id="categoryName"
+        value="<%= category[0].name %>"
+        required
+      />
+      <button type="submit">Update Category</button>
+    </form>
+  </body>
+</html>
