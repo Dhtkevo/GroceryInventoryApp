@@ -57,7 +57,7 @@ async function getSpecificGrocery(grocery_id) {
 
 async function createGrocery(name, price, stock, categoryId) {
   await pool.query(
-    "INSERT INTO groceries(name, price, stock, categoryId) VALUES($1, $2, $3, $4)",
+    "INSERT INTO groceries(name, price, stock, category_id) VALUES($1, $2, $3, $4)",
     [name, price, stock, categoryId]
   );
 }

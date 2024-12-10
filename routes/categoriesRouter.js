@@ -34,4 +34,14 @@ categoriesRouter.post(
   categoriesController.postDeleteCategory
 );
 
+categoriesRouter.get(
+  "/:categoryId/addGrocery",
+  categoriesController.getCreateGroceryForCategory
+);
+
+categoriesRouter.post(
+  "/:categoryId/addGrocery",
+  categoriesController.postCreateGroceryForCategory
+);
+
 module.exports = categoriesRouter;

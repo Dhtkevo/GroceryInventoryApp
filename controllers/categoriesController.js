@@ -51,3 +51,26 @@ exports.postDeleteCategory = asyncHandler(async (req, res) => {
   await db.deleteSpecificCategory(Number(categoryId));
   res.redirect("/categories");
 });
+
+exports.getCreateGroceryForCategory = asyncHandler(async (req, res) => {
+  const { categoryId } = req.params;
+  const category = await db.getSpecificCategory(Number(categoryId));
+
+  res.render("createGrocery", { category });
+});
+
+exports.postCreateGroceryForCategory = asyncHandler(async (req, res) => {
+  const { categoryId } = req.params;
+  const { groceryName } = req.body;
+  const { groceryPrice } = req.body;
+  const { groceryStock } = req.body;
+
+  await db.createGrocery(
+    groceryName,
+    Number(groceryPrice),
+    Number(groceryStock),
+    Number(categoryId)
+  );
+
+  res.redirect(`/categories/${categoryId}/items`);
+});

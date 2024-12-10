@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Grocery</title>
+  </head>
+  <body>
+    <h1>Add grocery to <%= category[0].name %> Category</h1>
+    <form action="/categories/<%= category[0].id %>/addGrocery" method="POST">
+      <label for="groceryName">Name of Grocery: </label>
+      <input type="text" name="groceryName" required />
+      <label for="groceryPrice">Price of Grocery: </label>
+      <input
+        type="number"
+        name="groceryPrice"
+        min="0"
+        value="0"
+        step=".01"
+        required
+      />
+      <label for="groceryStock">Stock of Grocery: </label>
+      <input type="number" name="groceryStock" min="0" value="0" required />
+      <button type="submit">Add Grocery</button>
+    </form>
+  </body>
+</html>
