@@ -1,5 +1,17 @@
 const asyncHandler = require("express-async-handler");
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
+
+const categoryNameNotEmpty =
+  "Category name must be provided and can only contain letters";
+
+const validateCategoryName = [
+  body("categoryName")
+    .trim()
+    .notEmpty()
+    .isAlpha("en-US", { ignore: " " })
+    .withMessage(categoryNameNotEmpty),
+];
 
 exports.getCategoryPage = asyncHandler(async (req, res) => {
   const categories = await db.getAllCategories();
@@ -19,10 +31,17 @@ exports.getCreateCategoryForm = (req, res) => {
   res.render("createCategory");
 };
 
-exports.postNewCategory = asyncHandler(async (req, res) => {
-  await db.createCategory(req.body.categoryName);
-  res.redirect("/categories");
-});
+exports.postNewCategory = [
+  validateCategoryName,
+  asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).send("ERROR UPDATING CATEGORY");
+    }
+    await db.createCategory(req.body.categoryName);
+    res.redirect("/categories");
+  }),
+];
 
 exports.getUpdateCategory = asyncHandler(async (req, res) => {
   const categId = req.params.categoryId;
