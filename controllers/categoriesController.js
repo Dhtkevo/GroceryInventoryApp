@@ -5,12 +5,30 @@ const { body, validationResult } = require("express-validator");
 const categoryNameErr =
   "Category name must be provided and can only contain letters";
 
+const groceryError = "One or more grcery fields contain errors";
+
 const validateCategoryName = [
   body("categoryName")
     .trim()
     .notEmpty()
     .isAlpha("en-US", { ignore: " " })
     .withMessage(categoryNameErr),
+];
+
+const validateGroceryFields = [
+  body("groceryName")
+    .trim()
+    .notEmpty()
+    .isAlpha("en-US", { ignore: " " })
+    .withMessage(`name - ${groceryError}`),
+  body("groceryPrice")
+    .notEmpty()
+    .isDecimal()
+    .withMessage(`price - ${groceryError}`),
+  body("groceryStock")
+    .notEmpty()
+    .isInt()
+    .withMessage(`stock - ${groceryError}`),
 ];
 
 exports.getCategoryPage = asyncHandler(async (req, res) => {
@@ -85,18 +103,25 @@ exports.getCreateGroceryForCategory = asyncHandler(async (req, res) => {
   res.render("createGrocery", { category });
 });
 
-exports.postCreateGroceryForCategory = asyncHandler(async (req, res) => {
-  const { categoryId } = req.params;
-  const { groceryName } = req.body;
-  const { groceryPrice } = req.body;
-  const { groceryStock } = req.body;
+exports.postCreateGroceryForCategory = [
+  validateGroceryFields,
+  asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).send(groceryError);
+    }
+    const { categoryId } = req.params;
+    const { groceryName } = req.body;
+    const { groceryPrice } = req.body;
+    const { groceryStock } = req.body;
 
-  await db.createGrocery(
-    groceryName,
-    Number(groceryPrice),
-    Number(groceryStock),
-    Number(categoryId)
-  );
+    await db.createGrocery(
+      groceryName,
+      Number(groceryPrice),
+      Number(groceryStock),
+      Number(categoryId)
+    );
 
-  res.redirect(`/categories/${categoryId}/items`);
-});
+    res.redirect(`/categories/${categoryId}/items`);
+  }),
+];
