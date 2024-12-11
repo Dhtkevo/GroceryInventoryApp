@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delete <%= grocery[0].name %></title>
+  </head>
+  <body>
+    <h1>Are you sure you want to delete <%= grocery[0].name %></h1>
+    <form method="POST" action="/groceries/<%= grocery[0].id %>/delete">
+      <button type="submit">Yes</button>
+    </form>
+    <button><a href="/groceries/<%= grocery[0].id %>">No</a></button>
+  </body>
+</html>

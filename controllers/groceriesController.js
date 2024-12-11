@@ -29,3 +29,18 @@ exports.postUpdateGrocery = asyncHandler(async (req, res) => {
   );
   res.redirect("/groceries/" + groceryId);
 });
+
+exports.getDeleteGrocery = asyncHandler(async (req, res) => {
+  const { groceryId } = req.params;
+
+  const grocery = await db.getSpecificGrocery(Number(groceryId));
+
+  res.render("deleteGrocery", { grocery });
+});
+
+exports.postDeleteGrocery = asyncHandler(async (req, res) => {
+  const { groceryId } = req.params;
+
+  await db.deleteSpecificGrocery(Number(groceryId));
+  res.redirect("/categories");
+});
