@@ -64,7 +64,7 @@ async function createGrocery(name, price, stock, categoryId) {
 
 async function updateGrocery(grocery_id, name, price, stock, categoryId) {
   await pool.query(
-    "UPDATE groceries SET name = $1, price = $2, stock = $3, categoryId = $4 WHERE groceryId = $5",
+    "UPDATE groceries SET name = $1, price = $2, stock = $3, category_id = $4 WHERE id = $5",
     [name, price, stock, categoryId, grocery_id]
   );
 }

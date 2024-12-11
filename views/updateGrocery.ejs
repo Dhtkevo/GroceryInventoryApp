@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Grocery</title>
+  </head>
+  <body>
+    <h1>Update <%= grocery[0].name %></h1>
+    <form action="/groceries/<%= grocery[0].id %>/update" method="POST">
+      <label for="groceryName">Name of Grocery: </label>
+      <input
+        type="text"
+        name="groceryName"
+        value="<%= grocery[0].name %>"
+        required
+      />
+      <label for="groceryPrice">Price of Grocery: </label>
+      <input
+        type="number"
+        name="groceryPrice"
+        min="0"
+        value="<%= grocery[0].price %>"
+        step=".01"
+        required
+      />
+      <label for="groceryStock">Stock of Grocery: </label>
+      <input
+        type="number"
+        name="groceryStock"
+        min="1"
+        value="<%= grocery[0].stock %>"
+        required
+      />
+      <button type="submit">Update Grocery</button>
+    </form>
+  </body>
+</html>

@@ -9,5 +9,8 @@
     <h1>Grocery Name: <%= grocery[0].name %></h1>
     <h3>Price: $<%= grocery[0].price %></h3>
     <h3>Stock: <%= grocery[0].stock %></h3>
+    <button>
+      <a href="/groceries/<%= grocery[0].id %>/update">Update Grocery</a>
+    </button>
   </body>
 </html>
